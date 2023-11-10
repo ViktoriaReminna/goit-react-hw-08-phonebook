@@ -15,14 +15,14 @@
 
 .label {
   margin-bottom: 8px;
-  color: rgb(220, 231, 255);
+  color: rgb(152, 155, 160);
   font-size: 22px;
   font-weight: 500;
 }
 
 .text {
   margin: 0 auto 18px auto;
-  color: rgb(238, 229, 41);
+  color: rgb(23, 23, 24);
   font-size: 20px;
   font-weight: 300;
   text-align: center;
@@ -38,7 +38,7 @@
   border: 1px solid rgb(220, 231, 255);
   border-radius: 10px;
   font-size: 18px;
-  color: rgb(220, 231, 255);
+  color: rgb(22, 22, 24);
 }
 
 .add {

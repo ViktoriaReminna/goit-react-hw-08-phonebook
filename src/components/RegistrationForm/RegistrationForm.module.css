@@ -14,7 +14,7 @@
 }
 
 .label {
-  color: rgb(220, 231, 255);
+  color: rgb(124, 130, 143);
   font-size: 22px;
   font-weight: 500;
 }
@@ -37,7 +37,7 @@
   border: 1px solid #d0cfcf;
   border-radius: 10px;
   font-size: 18px;
-  color: rgb(242, 243, 245);
+  color: rgb(18, 18, 19);
 }
 
 .add {

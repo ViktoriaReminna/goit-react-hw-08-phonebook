@@ -1,0 +1,47 @@
+.box {
+  display: flex;
+  min-width: 300px;
+  justify-content: flex-end;
+}
+
+.miniBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  min-width: 75px;
+  max-width: 75px;
+  margin-right: 10px;
+}
+
+.name {
+  margin-bottom: 8px;
+  color: #dce7ff;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.exit {
+  color: yellow;
+  background: #3e3d3e;
+  margin-right: 15px;
+  border: 2px solid #d7cfd7;
+  border-radius: 10px;
+  width: 50px;
+  height: 25px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+
+  transition-property: background-color;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exit:hover {
+  color: #d7cfd7;
+  background-color: #535053;
+  border: 2px solid #0fd81c;
+}
