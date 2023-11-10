@@ -2,36 +2,37 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ContactListItem, Wrapper } from './ContactList.styled';
 
-import { getFiltered } from '../../redux/selectors';
+import { selectFilteredByName } from '../../redux/selectors';
 
-import { deleteContact } from '../../redux/beckendAPI';
+import { useEffect } from 'react';
+
+import { deleteContact, fetchContacts } from 'redux/operations';
 
 export const ContactList = () => {
-  const contacts = useSelector(getFiltered);
+  const contacts = useSelector(selectFilteredByName);
   const dispatch = useDispatch();
 
-  const handleDelete = id => {
-    dispatch(deleteContact(id));
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  const handleDeleteContact = event => {
+    dispatch(deleteContact(event.target.dataset.id));
   };
+
   return (
     <Wrapper>
       <ul>
-        {contacts && contacts.length > 0 ? (
-          contacts.map(({ id, name, number }) => (
+        {contacts?.map(({ id, name, number }) => {
+          return (
             <ContactListItem key={id}>
               {name + ': ' + number}
-              <button
-                type="button"
-                onClick={() => handleDelete(id)}
-                aria-label="Delete contact"
-              >
+              <button type="button" onClick={handleDeleteContact} data-id={id}>
                 Delete
               </button>
             </ContactListItem>
-          ))
-        ) : (
-          <p>Sorry! You have no contacts created.</p>
-        )}
+          );
+        })}
       </ul>
     </Wrapper>
   );

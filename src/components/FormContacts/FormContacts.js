@@ -1,5 +1,3 @@
-import { addContact } from '../../redux/beckendAPI';
-
 import React from 'react';
 
 import { useState } from 'react';
@@ -11,67 +9,68 @@ import { StyledForm, StyledField, Label, Button } from './FormContacts.styled';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
-export const FormContacts = () => {
+import { addContacts } from 'redux/operations';
+
+export const ContactForm = () => {
+  const contacts = useSelector(selectContacts);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const handleAddContact = (name, number) => {
+    return contacts?.find(contact => contact.name === name)
+      ? toast.error(`${name} is already in contacts`)
+      : dispatch(
+          addContacts({
+            name,
+            number,
+          })
+        );
+  };
 
-  const onInputChange = event => {
-    const { name, value } = event.currentTarget;
-
+  const handleChange = event => {
+    const { name, value } = event.target;
     switch (name) {
       case 'name':
         setName(value);
         break;
-
       case 'number':
         setNumber(value);
         break;
-
-      default:
+      default: {
         return;
+      }
     }
   };
 
-  const onSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    const contact = {
-      name: name,
-      number: number,
-    };
+    handleAddContact(name, number);
+    toast.success(`${name} added to contacts.`);
+    onDelete();
+  };
 
-    const hasContact = contacts.some(
-      object => object.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (hasContact) {
-      toast.warn(`is already in contacts.`);
-      return;
-    }
-    dispatch(addContact(contact))
-      .unwrap()
-      .then(toast.success(`${contact.name} added to contacts.`));
+  const onDelete = () => {
     setName('');
     setNumber('');
   };
-
   return (
     <div>
-      <StyledForm onSubmit={onSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <Label>
           Name
           <StyledField
             type="text"
             name="name"
             placeholder="Name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
+            onChange={handleChange}
             value={name}
-            onChange={onInputChange}
+            required
           />
         </Label>
         <Label>
@@ -79,10 +78,11 @@ export const FormContacts = () => {
             type="tel"
             name="number"
             placeholder="Number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
+            onChange={handleChange}
             value={number}
-            onChange={onInputChange}
+            required
           />
         </Label>
         <Button type="submit">Add contact</Button>

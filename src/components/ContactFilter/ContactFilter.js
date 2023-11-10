@@ -2,30 +2,28 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { InputFilter } from './ContactFilter.styled';
 
-import { getFilter } from '../../redux/selectors';
+import { selectFilteredContact } from '../../redux/selectors';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { setFilter } from '../../redux/filterSlice';
+import { changeFilterAction } from '../../redux/filter/filterSlice';
 
-export const ContactFilter = () => {
+export const Filter = () => {
+  const filter = useSelector(selectFilteredContact);
   const dispatch = useDispatch();
-  const filtered = useSelector(getFilter);
 
-  const onChange = event => {
-    dispatch(setFilter(event.target.value));
+  const handleFilter = event => {
+    dispatch(changeFilterAction(event.currentTarget.value));
   };
 
   return (
-    <label name="filter">
+    <label>
       <InputFilter
         type="text"
         name="filter"
+        value={filter}
         placeholder="Find contacts by name"
-        onChange={event => {
-          onChange(event);
-        }}
-        value={filtered}
+        onChange={handleFilter}
       />
     </label>
   );
