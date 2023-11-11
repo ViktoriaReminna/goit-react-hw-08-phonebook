@@ -1,21 +1,21 @@
 import { styled } from 'styled-components';
 export const Div = styled.div`
-    position: relative;
-    max-width: 400px;
-    padding: 60px 50px;
-    margin: 50px auto 0;
-    background-size: cover;
-  background-color: #80808030;
-  display: grid;
+  position: relative;
+  max-width: 400px;
+  padding: 60px 50px;
+  margin: 50px auto 0;
+  background-size: cover;
+background-color: #80808030;
+display: grid;
 
-    &:before {
-     content: "";
-     position: absolute;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
-    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  &:before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+  box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
 `;
 
 export const Form = styled.form`
@@ -85,7 +85,6 @@ export const Button = styled.button`
   touch-action: manipulation;
   vertical-align: top;
   transition: box-shadow 0.2s;
-  width: 100px;
 
   &:focus-visible {
     border: 1px solid #4c51f9;

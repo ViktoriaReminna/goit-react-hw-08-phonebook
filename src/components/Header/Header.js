@@ -1,106 +1,48 @@
-// import UserMenu from 'components/UserMenu/UserMenu';
-// import { NavLink } from 'react-router-dom';
-// import { Box } from '../Box';
-// import { useSelector } from 'react-redux';
-// import { getIsLoggedIn } from 'redux/selectors';
-// import style from './Header.module.css';
+import { Suspense } from 'react';
 
-// export const Header = () => {
-//   const activeClassName = ({ isActive }) =>
-//     isActive ? `${style.active}` : `${style.navLink}`;
-//   const isLoggedIn = useSelector(getIsLoggedIn);
+import { Outlet } from 'react-router-dom';
 
-//   return (
-//     <header className={style.header}>
-//       <Box>
-//         <div className={style.box}>
-//           <nav className={style.nav}>
-//             <ul className={style.page}>
-//               <li>
-//                 <NavLink className={activeClassName} end to="/">
-//                   Home
-//                 </NavLink>
-//               </li>
-//               {isLoggedIn && (
-//                 <li>
-//                   <NavLink className={activeClassName} to="/contacts">
-//                     Contacts
-//                   </NavLink>
-//                 </li>
-//               )}
-//             </ul>
-//             {isLoggedIn ? (
-//               <UserMenu />
-//             ) : (
-//               <ul className={style.log}>
-//                 <li>
-//                   <NavLink to="/registration" className={activeClassName}>
-//                     Register
-//                   </NavLink>
-//                 </li>
-//                 <li>
-//                   <NavLink to="/login" className={activeClassName}>
-//                     Login
-//                   </NavLink>
-//                 </li>
-//               </ul>
-//             )}
-//           </nav>
-//         </div>
-//       </Box>
-//     </header>
-//   );
-// };
-import UserMenu from 'components/UserMenu/UserMenu';
-import { NavLink } from 'react-router-dom';
-import { Box } from '../Box';
-import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/selectors';
-import style from './Header.module.css';
+import { useLogOutHook } from '../../hook/PageHooks/LogoutHook';
 
-export const Header = () => {
-  const activeClassName = ({ isActive }) =>
-    isActive ? `${style.active}` : `${style.navLink}`;
-  const isLoggedIn = useSelector(getIsLoggedIn);
+import { Div, DivHeader, H3, Img, Navigation, Ul1, Ul2 } from './Header.styled';
 
+import contact from '../../img/contact.jpg';
+
+export function Layout() {
+  const { handleSubmit, isLogin, getUsername } = useLogOutHook();
   return (
-    <header className={style.header}>
-      <Box>
-        <div className={style.box}>
-          <nav className={style.nav}>
-            <ul className={style.page}>
-              <li>
-                <NavLink className={activeClassName} end to="/">
-                  Home
-                </NavLink>
-              </li>
-              {isLoggedIn && (
-                <li>
-                  <NavLink className={activeClassName} to="/contacts">
-                    Contacts
-                  </NavLink>
-                </li>
-              )}
-            </ul>
-            {isLoggedIn ? (
-              <UserMenu />
-            ) : (
-              <ul className={style.log}>
-                <li>
-                  <NavLink to="/registration" className={activeClassName}>
-                    Register
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/login" className={activeClassName}>
-                    Login
-                  </NavLink>
-                </li>
-              </ul>
-            )}
-          </nav>
-        </div>
-      </Box>
-    </header>
+    <DivHeader>
+      <Div>
+        <Ul1>
+          <li>
+            <Navigation to="/">Home</Navigation>
+          </li>
+          <li>{isLogin && <Navigation to="/contacts">Contacts</Navigation>}</li>
+        </Ul1>
+
+        <Ul2>
+          {isLogin ? (
+            <li>
+              <H3>
+                Hello {getUsername}
+                <Img src={contact} alt="contact" width="25" height="25" />
+              </H3>
+            </li>
+          ) : (
+            <li>
+              <Navigation to="/register">Sing up</Navigation>
+            </li>
+          )}
+          <li onClick={isLogin ? handleSubmit : undefined}>
+            <Navigation to="/login">
+              {isLogin ? 'Log out' : 'Log in'}
+            </Navigation>
+          </li>
+        </Ul2>
+      </Div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </DivHeader>
   );
-};
+}

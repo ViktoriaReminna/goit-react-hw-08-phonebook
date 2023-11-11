@@ -1,22 +1,29 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
-export const InputFilter = styled.input`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  width: 500px;
-  height: 100%;
-  padding: 12px 12px 12px 14px;
-
-  margin: 10px auto;
-  border-radius: 4px;
+export const Input = styled.input`
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 25px;
+  margin: 0 15px 15px 0;
   outline: none;
-  border: none;
-  background-color: #ffffff;
-  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
-
-  &:focus {
-    background-color: #00ff7f;
-  }
+  border: 1px solid #fff;
+  border-radius: 50px;
+  height: 46px;
+  width: 300px;
+  line-height: 46px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #444;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  transition: box-shadow 0.2s;
+`;
+export const Title = styled.h4`
+  color: #5f9ea0;
 `;

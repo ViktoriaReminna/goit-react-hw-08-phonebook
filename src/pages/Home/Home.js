@@ -1,20 +1,17 @@
-import { Box } from 'components/Box';
+import { Div, H2, Img, P } from './Home.styled';
 
-import React from 'react';
+import Phonebook from '../../img/phonebook.jpg';
 
-import style from './Home.module.css';
-
-export default function Home() {
+const Home = () => {
   return (
-    <Box className={style.homeHelp}>
-      <p className={style.text}>
-        Welcome to one of the safest contact storage sites.
-      </p>
-
-      <p className={style.text}>
-        Connect with us . Don't have an account yet? Register now for a
-        personalized experience{' '}
-      </p>
-    </Box>
+    <div>
+      <Div>
+        <H2>Welcome to Phonebook! </H2>
+        <Img src={Phonebook} alt="Phonebook" width="264" height="260" />
+      </Div>
+      <P>© 2023 Developed by Viktoriia Reminna</P>
+    </div>
   );
-}
+};
+
+export default Home;

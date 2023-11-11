@@ -1,19 +1,26 @@
-import { Box } from 'components/Box';
-import { ContactList } from 'components/ContactList';
-import { Filter } from 'components/ContactFilter';
-import style from './Contacts.module.css';
-import { ContactForm } from 'components/FormContacts';
+import InputPhoneBook from 'components/FormContacts/FormContacts';
 
-export default function ContactsPage() {
+import FindContact from 'components/ContactFilter/ContactFilter';
+
+import ContactsList from 'components/ContactList/ContactList';
+
+import { Toaster } from 'react-hot-toast';
+
+import { Div, DivContainer, Title } from './Contacts.styled';
+
+const PageContacts = () => {
   return (
-    <Box>
-      <div className={style.box}>
-        <h1 className={style.primeryTitle}>Phonebook</h1>
-        <ContactForm />
-        <h2 className={style.secondaryTitle}>Contacts</h2>
-        <Filter />
-        <ContactList />
-      </div>
-    </Box>
+    <DivContainer>
+      <Div>
+        <h1>Phonebook</h1>
+        <InputPhoneBook />
+        <Title>Contacts</Title>
+        <FindContact />
+        <ContactsList />
+        <Toaster />
+      </Div>
+    </DivContainer>
   );
-}
+};
+
+export default PageContacts;

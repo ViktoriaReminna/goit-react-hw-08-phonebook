@@ -1,39 +1,31 @@
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 
-import { ContactListItem, Wrapper } from './ContactList.styled';
+import { useContactsParams } from '../../hook/ContactsHooks/useContactsParams';
 
-import { selectFilteredByName } from '../../redux/selectors';
+import { Button, Li, Ul } from './ContactList.styled';
 
-import { useEffect } from 'react';
-
-import { deleteContact, fetchContacts } from 'redux/operations';
-
-export const ContactList = () => {
-  const contacts = useSelector(selectFilteredByName);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
-  const handleDeleteContact = event => {
-    dispatch(deleteContact(event.target.dataset.id));
-  };
+const ContactsList = () => {
+  const { deleteContact, isFetching, contacts, contactsList, isDeleting } =
+    useContactsParams();
 
   return (
-    <Wrapper>
-      <ul>
-        {contacts?.map(({ id, name, number }) => {
-          return (
-            <ContactListItem key={id}>
-              {name + ': ' + number}
-              <button type="button" onClick={handleDeleteContact} data-id={id}>
-                Delete
-              </button>
-            </ContactListItem>
-          );
-        })}
-      </ul>
-    </Wrapper>
+    <Ul>
+      {isFetching && <h2>Loading...</h2>}
+      {contacts &&
+        contactsList.map(({ id, name, number }) => (
+          <Li key={id} id={id}>
+            {name}: {number}
+            <Button
+              type="submit"
+              onClick={() => {
+                deleteContact(id);
+              }}
+              disabled={isDeleting}
+            ></Button>
+          </Li>
+        ))}
+    </Ul>
   );
 };
+
+export default ContactsList;
