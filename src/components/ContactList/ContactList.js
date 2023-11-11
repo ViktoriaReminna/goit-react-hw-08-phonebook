@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useContactsParams } from '../../hook/ContactsHooks/useContactsParams';
 
-import { Button, Li, Ul } from './ContactList.styled';
+import { Li, Ul, Button } from './ContactList.styled';
 
 const ContactsList = () => {
   const { deleteContact, isFetching, contacts, contactsList, isDeleting } =

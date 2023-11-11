@@ -3,10 +3,12 @@ import { styled } from 'styled-components';
 export const Ul = styled.ul`
   margin: auto;
   padding: inherit;
+  display: flex;
 `;
 
 export const Li = styled.li`
   display: flex;
+  justify-content: center;
   border: 3px solid #191970;
   gap: 20px;
   font-size: 20px;
@@ -15,8 +17,10 @@ export const Li = styled.li`
   border-radius: 30px;
   box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
   background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
 
-    &:focus-visible {
+  &:focus-visible {
     border: 1px solid #4c51f9;
     outline: none;
   }
@@ -35,6 +39,7 @@ export const Li = styled.li`
     border-color: #eee;
     color: #444;
     cursor: not-allowed;
+  }
 `;
 export const Button = styled.div`
   opacity: 0.2;

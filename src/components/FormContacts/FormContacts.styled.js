@@ -12,11 +12,16 @@ export const Label = styled.label`
   width: auto;
   display: grid;
   justify-content: center;
+
 `;
 
 export const Button = styled.button`
-  display: block;
-  margin: 0px 40px 0px 40px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 25px;
+  margin-left: auto;
+  margin-right: auto;
+
   padding: 0 25px;
 
   outline: none;
