@@ -7,6 +7,7 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   display: flex;
+  border: 3px solid #191970;
   gap: 20px;
   font-size: 20px;
   font-family: revert;

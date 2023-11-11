@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   display: grid;
   gap: 10px;
 `;
@@ -15,10 +16,11 @@ export const Label = styled.label`
 
 export const Button = styled.button`
   display: block;
+  margin: 0px 40px 0px 40px;
   padding: 0 25px;
-  margin: 0 15px 15px 0;
+
   outline: none;
-  border: 1px solid #fff;
+  border: 3px solid #191970;
   border-radius: 50px;
   height: 46px;
 
@@ -65,7 +67,7 @@ export const Input = styled.input`
   padding: 0 25px;
   margin: 0 15px 15px 0;
   outline: none;
-  border: 1px solid #fff;
+  border: 3px solid #191970;
   border-radius: 50px;
   height: 46px;
   width: 300px;
